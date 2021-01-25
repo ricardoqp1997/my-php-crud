@@ -29,7 +29,7 @@
     <nav class="navbar navbar-light bg-danger nav-frutas fixed-top">
         <a class="navbar-brand" href="index.php">
             <img src="assets/resources/watermelon.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-            Bootstrap
+            C.R.U.D. Inventario de frutería
         </a>
     </nav>
 
@@ -45,133 +45,125 @@
     <?php endif; ?>
 
     <section class="background-main position-relative overflow-hidden p-3 p-md-5 m-md-3">
-        <div class="container-fluid dir_tarjeta">
-            <div class="row justify-content-md-center">
+        <form action="process.php" method="POST">
 
-                <!-- Tarjeta 1-->
-                <div class="col-md-auto posicion_tarjeta">
-                    <div class="card contenido_tarjeta_1">
-                        <div class="card-body">
+            <div class="container-fluid dir_tarjeta">
+                <div class="row justify-content-md-center">
 
-                            <form action="process.php" method="POST">
+                    <!-- Tarjeta 1-->
+                    <div class="col-md-auto posicion_tarjeta">
+                        <div class="card contenido_tarjeta_1">
+                            <div class="card-body">
 
-                                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
 
-                                <h5 class="card-title"><strong>Registro de productos</strong></h5>
+                                    <h5 class="card-title"><strong>Registro de productos</strong></h5>
 
-                                <p class="card-text text-card-resp">
-                                    Bienvenido, porfavor diligencie los siguientes campos para el inventario de
-                                    venta de frutas y verduras.
-                                </p>
+                                    <p class="card-text text-card-resp">
+                                        Bienvenido, porfavor diligencie los siguientes campos para el inventario de
+                                        venta de frutas y verduras.
+                                    </p>
 
-                                <label for="producto">Producto</label>
-                                <input type="text" id="producto" name="producto" class="form-control"
-                                       placeholder="Nombre del producto" value="<?php echo $nombre; ?>">
-                                <br>
+                                    <label for="producto">Producto</label>
+                                    <input type="text" id="producto" name="producto" class="form-control"
+                                           placeholder="Nombre del producto" value="<?php echo $nombre; ?>">
+                                    <br>
 
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" id="fruta" value="Fruta">
-                                    <label class="form-check-label" for="fruta">
-                                        Fruta
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" id="verdura" value="Verdura">
-                                    <label class="form-check-label" for="verdura">
-                                        Verdura
-                                    </label>
-                                </div>
-                                <br>
-                                <br>
-
-                                <label for="cantidad">Cantidad de existencias</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">#</span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="tipo" id="fruta" value="Fruta">
+                                        <label class="form-check-label" for="fruta">
+                                            Fruta
+                                        </label>
                                     </div>
-                                    <input type="number" id="cantidad" name="cantidad"
-                                           class="form-control" value="<?php echo $cantidad; ?>">
-                                </div>
-
-                                <label for="costo">Precio C/U</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="tipo" id="verdura" value="Verdura">
+                                        <label class="form-check-label" for="verdura">
+                                            Verdura
+                                        </label>
                                     </div>
-                                    <input type="number" id="costo" name="costo"
-                                           class="form-control" value="<?php echo $precio; ?>">
-                                </div>
+                                    <br>
+                                    <br>
 
-                                <?php if($update == true): ?>
-                                    <input type="submit" value="Actualizar" class="btn btn-danger btn-ruta"
-                                           id="submit" name="actualizar">
-                                <?php else: ?>
-                                    <input type="submit" value="Registrar" class="btn btn-danger btn-ruta"
-                                           id="submit" name="guardar">
-                                <?php endif; ?>
-                            </form>
+                                    <label for="cantidad">Cantidad de existencias</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">#</span>
+                                        </div>
+                                        <input type="number" id="cantidad" name="cantidad"
+                                               class="form-control" value="<?php echo $cantidad; ?>">
+                                    </div>
 
+                                    <label for="costo">Precio C/U</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input type="number" id="costo" name="costo"
+                                               class="form-control" value="<?php echo $precio; ?>">
+                                    </div>
+
+                                    <?php if($update == true): ?>
+                                        <input type="submit" value="Actualizar" class="btn btn-danger btn-ruta"
+                                               id="submit" name="actualizar">
+                                    <?php else: ?>
+                                        <input type="submit" value="Registrar" class="btn btn-danger btn-ruta"
+                                               id="submit" name="guardar">
+                                    <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2-->
+                    <div class="col-md-auto posicion_tarjeta">
+
+                        <?php
+                            // Conexión a la base de datos configurada con XAMPP mediante PHPMyadmin
+                            $mysqli = new mysqli('localhost', 'root', '', 'rqp-crud') or die(mysqli_error($mysqli));
+
+                            $query_result = $mysqli->query("SELECT * FROM `rqp-crud`.productos") or die($mysqli->error);
+
+                            // pre_r($query_result);
+
+                        ?>
+
+                        <div class="card contenido_tarjeta_2" id="map">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre del producto</th>
+                                        <th scope="col">Tipo de producto</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio C/U</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php while ($producto = $query_result->fetch_assoc()): ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $producto['id'] ?></th>
+                                            <td><?php echo $producto['nombre'] ?></td>
+                                            <td><?php echo $producto['tipo'] ?></td>
+                                            <td><?php echo $producto['cantidad'] ?></td>
+                                            <td>$ <?php echo $producto['precio'] ?></td>
+
+                                            <td>
+                                                <a href="index.php?edit=<?php echo $producto['id']; ?>" class="btn btn-info">
+                                                    Editar
+                                                </a>
+                                                <a href="index.php?delete=<?php echo $producto['id']; ?>" class="btn btn-danger">
+                                                    Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-
-                <!-- Tarjeta 2-->
-                <div class="col-md-auto posicion_tarjeta">
-
-                    <?php
-                        // Conexión a la base de datos configurada con XAMPP mediante PHPMyadmin
-                        $mysqli = new mysqli('localhost', 'root', '', 'rqp-crud') or die(mysqli_error($mysqli));
-
-                        $query_result = $mysqli->query("SELECT * FROM `rqp-crud`.productos") or die($mysqli->error);
-
-
-                        // pre_r($query_result);
-
-                    ?>
-
-                    <div class="card contenido_tarjeta_2" id="map">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre del producto</th>
-                                    <th scope="col">Tipo de producto</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Precio C/U</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($producto = $query_result->fetch_assoc()): ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $producto['id'] ?></th>
-                                        <td><?php echo $producto['nombre'] ?></td>
-                                        <td><?php echo $producto['tipo'] ?></td>
-                                        <td><?php echo $producto['cantidad'] ?></td>
-                                        <td>$ <?php echo $producto['precio'] ?></td>
-
-                                        <td>
-                                            <a href="index.php?edit=<?php echo $producto['id']; ?>" class="btn btn-info">
-                                                Editar
-                                            </a>
-                                            <a href="index.php?delete=<?php echo $producto['id']; ?>" class="btn btn-danger">
-                                                Eliminar
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
             </div>
-
-        </div>
-
+        </form>
     </section>
-
-
 
     <!-- Recursos js de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

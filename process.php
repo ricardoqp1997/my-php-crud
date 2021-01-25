@@ -13,7 +13,7 @@ $precio = null;
 
 $update = false;
 
-// Request POST mediante el formulario con el botón guardar en index.php
+// Request POST mediante el formulario con el botón 'guardar' en index.php
 if(isset($_POST['guardar'])){
 
     // Extracción de datos del formulario llamandolos directamente desde sus nombres en los tags HTML
@@ -41,7 +41,7 @@ if(isset($_GET['delete'])){
     // Hacemos el query para eliminar los datos del elemento obtenido en 'rqp-crud'
     $mysqli->query("DELETE FROM productos WHERE id=$id") or die($mysqli->error);
 
-    $_SESSION['message'] = '¡Producto eliminado correctamente!';
+    $_SESSION['message'] = '¡Producto eliminado del inventario!';
     $_SESSION['msg_type'] = 'warning';
 
     header("Location: index.php");
@@ -69,7 +69,7 @@ if(isset($_GET['edit'])){
     }
 }
 
-// Request POST mediante el formulario con el botón actualizar en index.php
+// Request POST mediante el formulario con el botón 'actualizar' en index.php
 if(isset($_POST['actualizar'])){
 
     // Extracción de datos del formulario llamandolos directamente desde sus nombres en los tags HTML
@@ -84,7 +84,7 @@ if(isset($_POST['actualizar'])){
     or die($mysqli->error);
 
     $_SESSION['message'] = '¡Producto actualizado correctamente!';
-    $_SESSION['msg_type'] = 'success';
+    $_SESSION['msg_type'] = 'info';
 
     header("Location: index.php");
 }
